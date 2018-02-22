@@ -27,21 +27,23 @@ module.exports = {
   },
 
   setupPreprocessorRegistry(type, registry) {
+    console.log('setupPreprocessorRegistry', type, registry);
     if (type !== 'parent') {
       return;
     }
 
-    registry.add('js', {
-      name: 'ember-cli-typescript',
-      toTree: (original, inputPath, outputPath) => {
-        if (!this.compiler || inputPath !== '/') {
-          return original;
-        }
-
-        let ts = new Funnel(this.compiler.treeForHost(), { destDir: outputPath });
-        return new MergeTrees([original, ts], { overwrite: true });
-      },
-    });
+    // registry.add('js', {
+    //   name: 'ember-cli-typescript',
+    //   toTree: (original, inputPath, outputPath) => {
+    //     // console.log('js', original, inputPath, outputPath);
+    //     if (!this.compiler || inputPath !== '/') {
+    //       return original;
+    //     }
+    //
+    //     let ts = new Funnel(this.compiler.treeForHost(), { destDir: outputPath });
+    //     return new MergeTrees([original, ts], { overwrite: true });
+    //   },
+    // });
   },
 
   treeForApp() {
